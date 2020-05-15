@@ -8,21 +8,32 @@ function App({}: React.Props<AppProps>) {
   return (
     <div className={"App"}>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <ShowMyIP />
     </div>
   );
 }
 
+function ShowMyIP(props: {}) {
+  const [ ip, setIP ]  = React.useState('<unknown>');
+  React.useEffect(() => {
+    (async function fetcher() {
+      try {
+        const response = await fetch('/api/my-ip')
+        const text = await response.text();
+        setIP(text);
+      } 
+      catch (xx) {
+        setIP(xx.message);
+      }
+      finally {
+        console.log('WTF?!');
+      }
+    })();
+  }, []);
+  return <div>{ip}</div>;
+}
+
+
 export default App;
+

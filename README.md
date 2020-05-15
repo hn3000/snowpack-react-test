@@ -1,6 +1,7 @@
 # New Project
 
 > ✨ Bootstrapped with Create Snowpack App (CSA).
+> ✨ Tweaked to use the proxy worker
 
 ## Available Scripts
 
